@@ -1,0 +1,58 @@
+<div class="p-4">
+  <div class="flex justify-between items-center">
+    <div class="p-3 text-4xl">{{project?.projectName | titlecase}}</div>
+    <button  class="flex items-center w-fit p-3 bg-slate-400 text-white text-sm rounded-xl hover:bg-black md:mr-44 md:flex-wrap" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+      <span class="hidden md:flex">Add Task</span>
+    </button>
+  </div>
+
+  <div cdkDropListGroup class="flex gap-3 flex-wrap mt-3 ">
+    <div
+      *ngFor="let column of columns"
+      cdkDropList
+      [cdkDropListData]="column.task"
+      (cdkDropListDropped)="drop($event, column.columnTitle)"
+      class="p-2 bg-slate-300 rounded-md w-80 cursor-move"
+    >
+      <div class="flex items-center text-md justify-between">
+        <input
+          #formRow
+          class="basis-3/4 p-1 hover:bg-slate-200 pl-4 rounded-sm bg-transparent capitalize"
+          type="text"
+          (change)="updateColumnDetails(column)"
+          [(ngModel)]="column.columnTitle"
+        />
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" >
+                <button type="button" mat-menu-item (click)="deleteColumn(column.columnId)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete Column</span>
+                </button>
+                <button type="button" mat-menu-item (click)="openColumnTaskLimitDialog(column)">
+                  <mat-icon>create</mat-icon>
+                  <span>Set Limit</span>
+                </button>
+              </mat-menu>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div *ngFor="let task of column.task" cdkDrag>
+          <app-task-card [task]="task" [projectId]="project?.projectId"></app-task-card>
+        </div>
+      </div>
+    </div>
+    <div class="p-2 bg-slate-300 rounded-md w-fit h-fit">
+      <button class="p-1" (click)="addColumn()">
+        <mat-icon
+          class="hover:bg-slate-200 text-md rounded-sm"
+          aria-hidden="false"
+          fontIcon="add"
+        ></mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

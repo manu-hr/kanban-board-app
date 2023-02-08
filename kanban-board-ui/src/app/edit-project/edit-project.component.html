@@ -1,0 +1,39 @@
+<div style="padding: 15px;">
+  <mat-card class="container">
+    <div class="innerContainer bg-slate-300">
+      <h1 mat-dialog-title>Please Fill Information</h1>
+      <div mat-dialog-content style="justify-content: center;">
+        <div>
+          <form [formGroup]="editProjectForm">
+            <mat-form-field  style="width: 100%;">
+              <input matInput placeholder="Project Name" required formControlName="projectName">
+              <mat-error *ngIf="projectName?.errors?.['required']">
+                Project Name is required.
+              </mat-error>
+            </mat-form-field><br>
+            <mat-form-field style="width: 100%;">
+              <textarea matInput placeholder="Enter Description" type="textarea" required
+                formControlName="projectDescription"></textarea>
+              <mat-error *ngIf="projectDescription?.errors?.['required']">
+                Description is required.
+              </mat-error>
+            </mat-form-field><br>
+            <mat-form-field appearance="fill">
+              <input [min]="minDate" matInput placeholder="Please Choose some deadline" [matDatepicker]="picker"
+                formControlName="deadline" required>
+              <mat-error *ngIf="deadline?.errors?.['required']">
+                Deadline is required.
+              </mat-error>
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button [disabled]="editProjectForm.invalid" [mat-dialog-close]="editProjectForm.value"
+              color="accent">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

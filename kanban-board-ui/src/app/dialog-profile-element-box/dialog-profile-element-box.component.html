@@ -1,0 +1,41 @@
+<mat-card class="container">
+  <div class="innerContainer">
+    <h1 mat-dialog-title>Please Fill Informartion</h1>
+    <div mat-dialog-content style="justify-content: center;">
+      <div>
+        <form [formGroup]="profileEditForm">
+          <mat-form-field>
+            <input matInput placeholder="User Name" required formControlName="userName">
+            <mat-error *ngIf="userName?.errors?.['required']">
+              Name is required.
+            </mat-error>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput placeholder="Phone" required formControlName="phoneNumber">
+            <mat-error *ngIf="phoneNumber?.errors?.['required']">
+              Phone is required.
+            </mat-error>
+            <mat-error *ngIf="userName?.errors?.['pattern']">
+              Please Enter the valid phone.
+            </mat-error>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput placeholder="pat1@gmail.com"  required formControlName="email">
+            <mat-error *ngIf="email?.errors?.['required']">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.['pattern']">
+              Please Enter the Valid Email.
+            </mat-error>
+          </mat-form-field><br>
+          <button color="warn" mat-button mat-raised-button type="reset">Reset</button>&nbsp;&nbsp;
+          <button mat-raised-button [disabled]="profileEditForm.invalid" [mat-dialog-close]="profileEditForm.value" color="accent">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div mat-dialog-actions>
+      <button color="warn" mat-button mat-dialog-close>Cancel</button>
+      
+    </div>
+  </div>
+</mat-card>

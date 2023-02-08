@@ -1,0 +1,20 @@
+
+<mat-drawer-container class="drawer-container ">
+    <mat-drawer  class="side-drawer px-6 w-80" mode="side" [opened]="openSidenav">
+            <mat-selection-list #sideList [multiple]="false" >
+                <div mat-subheader class="text-xl ">Projects</div>
+                <mat-list-option *ngFor="let project of projects" [selected]="project.projectId == projectId.value"  (click)="setProjectId(project.projectId)" >
+                    <mat-icon matListItemIcon>folder</mat-icon>
+                    {{project.projectName | titlecase}}
+                </mat-list-option>
+            </mat-selection-list>
+    </mat-drawer>
+    <mat-drawer-content class="px-6" >
+        <div *ngFor="let project of projects">
+            <app-project-dashboard *ngIf="project.projectId == projectId.value" [projectId]="project.projectId"></app-project-dashboard>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
+
+
+

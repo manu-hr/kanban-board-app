@@ -1,0 +1,40 @@
+#total{
+    background-image: url("../../assets/images/lb2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* opacity: 1; */
+    height: 100%;
+}
+#innerTotal{
+    opacity: 0.9;
+}
+#para{
+    display: flex;
+    flex-basis: 75%;
+}
+#form{
+    display: flex;
+    flex-basis: 25%;
+}
+#form-container{
+    /* padding: 30px; */
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+#form-title{
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 6px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    border-bottom: solid1px white;
+}
+
+.form-body{
+    padding: 25px;
+}
+

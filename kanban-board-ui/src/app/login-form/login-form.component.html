@@ -1,0 +1,47 @@
+<div class="flex justify-around" id="total">
+    <div class="grid grid-cols-1 md:grid-cols-3 content-center place-items-center gap-4">
+        <div id="para" class="md:col-span-2 p-4">
+            <p class="font-black font-mono">
+                <span class="text-2xl">Welcome to </span><br />
+                <span class="text-8xl">Kanban Board</span><br />
+                <span class="text-2xl">Agile Project Management Tool</span>
+            </p>
+            <br />
+        </div>
+        <div class="form p-4">
+            <div id="form-container" class="bg-slate-300 flex flex-col p-6">
+                <h1 id="form-title">Login</h1>
+                <mat-divider></mat-divider>
+                <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+                    <div class="form-body">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput placeholder="Email" formControlName="email" />
+                            <mat-error *ngIf="email?.errors?.['required']">
+                                Email is required.
+                            </mat-error>
+                            <mat-error *ngIf="email?.errors?.['pattern']">
+                                Enter a Valid Email.
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" placeholder="Password" formControlName="password" />
+                            <mat-error *ngIf="password?.errors?.['required']">
+                                Password is required.
+                            </mat-error>
+                        </mat-form-field>
+                        <br />
+                        <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <mat-divider></mat-divider>
+                <a routerLink="/registration" class="text-white text-sm p-4 m-auto">New User? Click Here To SignUp!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

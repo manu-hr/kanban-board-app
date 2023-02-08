@@ -1,0 +1,15 @@
+<div class="p-4">
+    <Form [formGroup]="memberForm" >
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Enter EmailId</mat-label>
+            <input matInput  placeholder="Email" formControlName="email"/>
+            <mat-error *ngIf="email?.errors?.['pattern']">
+                Enter a Valid Email.
+            </mat-error>
+        </mat-form-field><br>
+        <button type="submit" [disabled]="memberForm.invalid" [mat-dialog-close]="memberForm.value" mat-raised-button color="primary">Add</button>
+    </Form>  
+</div>
+
+
+

@@ -1,0 +1,92 @@
+version: '3.9'
+services:
+  authenticationService:
+    image: auth_app_service
+    build: ./authentication
+    container_name: user-auth-app
+    ports:
+      - "8888:8888"
+    networks:
+      - mynet
+    depends_on:
+      - mysqlDbService
+      - gatewayService
+    restart: always
+
+  mysqlDbService:
+    image: mysql:latest
+    container_name: mysql_container
+    ports:
+      - "3306:3306"
+    networks:
+      - mynet
+    environment:
+      MYSQL_ROOT_PASSWORD: root@123
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root@123
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  kanbanService:
+    image: kanban_app
+    container_name: kanban-board-app
+    build: ./kanban-board-app
+    ports:
+      - "8085:8085"
+    restart: always
+    networks:
+      - mynet
+    depends_on:
+      - mongoDbService
+      - gatewayService
+      - rabbitmq
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+
+  mongoDbService:
+    image: mongo:3.6
+    container_name: mongo_container
+    ports:
+      - "27017:27017"
+    networks:
+      - mynet
+
+  gatewayService:
+    image: gateway_image
+    container_name: gateway-app
+    build: ./GatewayService
+    ports:
+      - "9999:9999"
+    networks:
+      - mynet
+
+  rabbitmq:
+    image: rabbitmq:3.8.23-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - mynet
+    restart: always
+
+  mailService:
+    image: mail_image
+    container_name: mail-sender-app
+    build: ./mailSender
+    ports:
+      - "8080:8080"
+    networks:
+      - mynet
+    environment:
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    depends_on:
+        - rabbitmq
+
+networks:
+  mynet:
+    driver: bridge
+
+
+
+
+

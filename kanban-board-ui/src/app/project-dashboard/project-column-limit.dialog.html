@@ -1,0 +1,9 @@
+<div class="p-4">
+    <Form [formGroup]="memberForm" >
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Enter Column Limit</mat-label>
+            <input matInput type="number" placeholder="Limit" formControlName="taskLimit"/>
+        </mat-form-field><br>
+        <button type="submit" [mat-dialog-close]="memberForm.value" mat-raised-button color="primary">Set</button>
+    </Form>  
+</div>

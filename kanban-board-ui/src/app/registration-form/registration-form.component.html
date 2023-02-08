@@ -1,0 +1,84 @@
+<div class="flex justify-around " id="total">
+  <div class="grid grid-cols-1 md:grid-cols-3 content-center place-items-center gap-2">
+    <div id="para" class="md:col-span-2 p-4">
+      <p class="font-black font-mono"><span class="text-2xl">Welcome to </span><br>
+        <span class="text-8xl">Kanban Board</span><br>
+        <span class="text-2xl">Agile Project Management Tool</span>
+      </p><br>
+    </div>
+    <div class="form p-4">
+      <div id="container" class=" bg-slate-300 flex flex-col p-6">
+        <h1 id="form-title">Register Account</h1>
+        <mat-divider></mat-divider>
+        <form [formGroup]="registrationForm" (ngSubmit)="sendRegisterData()" >
+          <div class="form-body">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="userName">
+              <mat-error *ngIf="userName?.errors?.['required']">
+                Name is required.
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Email Id</mat-label>
+              <input matInput type="email" formControlName="email">
+              <mat-error *ngIf="email?.errors?.['required']">
+                Email is required.
+              </mat-error>
+              <mat-error *ngIf="email?.errors?.['pattern']">
+                Email should be in Valid Pattern .
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Phone Number</mat-label>
+              <input matInput type="number" formControlName="phoneNumber" maxlength="13">
+              <mat-error *ngIf="phoneNumber?.errors?.['required']">
+                Phone Number is required.
+              </mat-error>
+              <mat-error *ngIf="phoneNumber?.errors?.['pattern']">
+                Enter valid Phone Number .
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password">
+              <mat-error *ngIf="password?.errors?.['required']">
+                Password is required .
+              </mat-error>
+              <mat-error *ngIf="password?.errors?.['minlength']">
+                Password should have min 6 letter password .
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" (input)="check()">
+              <mat-error *ngIf="confirmPassword?.errors?.['required']">
+                Confirm Password Field Cannot be Empty.
+              </mat-error>
+              <mat-error *ngIf="confirmPassword?.errors?.['mustMatchError']">
+                Password and Confirm Password Did not Match.
+              </mat-error>
+            </mat-form-field>
+            <br>
+
+            <div id="button" class="mt-5">
+              <button color="accent" mat-button mat-raised-button type="reset">Reset</button>
+              <button mat-raised-button [disabled]="registrationForm.invalid" color="primary">Submit</button>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="form-footer text-white">
+            <a routerLink="/login">
+              If You Are Already A User Click Here To Login </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

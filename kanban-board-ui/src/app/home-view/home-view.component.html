@@ -1,0 +1,55 @@
+<div class="container flex flex-col md:flex-row gap-3  flex-wrap">
+
+  <mat-card class="example-card shadow-2xl " *ngFor="let details of projectDetails">
+    <div class="flex justify-between items-center ">
+      <mat-card-title class="px-2">{{ details.projectName | titlecase}}</mat-card-title>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openDialogAddMembers(details.projectId)">
+            <mat-icon>person_add</mat-icon>
+            <span>Add Members</span>
+          </button>
+          <button type="button" mat-menu-item (click)="openDialogEditProject(details)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit Project</span>
+          </button>
+          <button type="button" mat-menu-item (click)="deleteProject(details.projectId)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete Project</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+
+    <mat-card-content>
+      <mat-card-subtitle >{{details.projectDescription}}</mat-card-subtitle >
+      <div></div>
+      <p>
+        <mat-card-subtitle>Deadline: <span class="text-red-500">{{ details.deadline | date:'shortDate' }}</span>
+          
+        </mat-card-subtitle >
+  
+        
+  
+      </p>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <button  mat-button color="primary" [routerLink]="'project-dashboard/'+details.projectId"><span>View Project</span></button>
+    </mat-card-actions>
+  </mat-card>
+  <div>
+    
+  </div>
+    <!-- <a routerLink="/home" class="board-link tex-3xl" (click)="openDialog1()"> <mat-icon>add</mat-icon> </a> -->
+    <button  class=" flex items-center w-fit p-3 bg-white text-black text-sm rounded-xl  
+    md:mr-44 md:flex-wrap add-project" (click)="openDialog1()">
+      <mat-icon>add</mat-icon>
+      <span class="flex">Create Project</span>
+    </button>
+
+</div>

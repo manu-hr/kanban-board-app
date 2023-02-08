@@ -1,0 +1,40 @@
+<!-- <div id="headerDiv" class="bg-slate-400 z-50 h-full">
+    <div style="display:flex" routerLink="home">
+        <a class="board-link tex-3xl" (click)="openDialog()"> Create Project </a>
+    </div>
+    <div id="iconDiv">
+        <a>
+            <mat-icon class="icons">account_circle</mat-icon>
+        </a>
+        <a>
+            <mat-icon *ngIf="!isLoggedIn" class="icons" aria-hidden="false" aria-label="Example home icon"
+                fontIcon="login" style="color: white" [routerLink]="'login'">login</mat-icon>
+        </a>
+        <a>
+            <mat-icon *ngIf="isLoggedIn" class="icons" aria-hidden="false" aria-label="Example home icon"
+                fontIcon="logout" style="color: white" (click)="logout()">exit_to_app</mat-icon>
+        </a>
+    </div>
+</div> -->
+
+<div class="flex flex-row justify-between items-center space-x-2 bg-slate-400 z-50 h-full px-8">
+    <div class="flex space-x-4 items-center p-1">
+        <a href="">
+            <img src="../../assets/images/kbLogo5.png" alt="" class="h-16" >
+        </a>
+    </div>
+    <div class="flex space-x-4 items-center">
+        <button class="p-1 " routerLink="/profile">
+            <mat-icon class="hover:text-violet-700 text-white " >account_circle</mat-icon>
+        </button>
+        <a>
+            <mat-icon *ngIf="!isLoggedIn" class="mouse-pointer hover:text-violet-700 text-white mr-20" aria-hidden="false" 
+                fontIcon="login"  [routerLink]="'login'">login</mat-icon>
+        </a>
+        <a>
+            <mat-icon *ngIf="isLoggedIn" class="mouse-pointer hover:text-violet-700  text-white mr-16" aria-hidden="false" 
+                fontIcon="logout"  (click)="logout()">exit_to_app</mat-icon>
+        </a>
+    </div>
+
+</div>

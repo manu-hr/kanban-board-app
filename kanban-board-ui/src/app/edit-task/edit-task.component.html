@@ -1,0 +1,33 @@
+<div id="whole" class="p-6">
+    <div id="container" class="p-4 bg-slate-300 rounded-md" >
+        <form [formGroup]="taskForm"> 
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Task Name</mat-label>
+                <input matInput type="text" formControlName="taskName">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Task Description</mat-label>
+                <textarea matInput formControlName="taskDescription"></textarea>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Priority</mat-label>
+                <mat-select  mat-input formControlName="priority">
+                <mat-option value="High">High</mat-option>
+                <mat-option value="Medium">Medium</mat-option>
+                <mat-option value="Low">Low</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>DeadLine</mat-label>
+                <input [min]="minDate" matInput [matDatepicker]="picker" formControlName="deadlineDateAndTime">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field><br>
+            <button type="submit" [mat-dialog-close]="taskForm.value" mat-raised-button color="primary">Edit Task</button>
+        </form>
+    </div>
+</div>

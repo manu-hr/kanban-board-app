@@ -1,0 +1,14 @@
+.container
+{
+    width: fit-content;
+    margin: auto;
+}
+.innerContainer
+{
+
+    width: 100%;
+}
+.formField
+{
+    width: 100px;
+}

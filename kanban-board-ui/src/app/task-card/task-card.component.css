@@ -1,0 +1,11 @@
+.parent-div:hover .child-button {
+    display: block;
+}
+
+.child-button {
+    display: none;
+}
+
+.parent-div:hover .child-text {
+    display: none;
+}
